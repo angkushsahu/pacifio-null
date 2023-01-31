@@ -1,0 +1,46 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+@use "styles/breakpoints" as *;
+
+.footer {
+    background-color: $primary-foreground;
+    @include container($primary-foreground);
+    padding: 4rem 2rem 6rem;
+    @include flexBox;
+    gap: 6rem;
+    flex-direction: column;
+    & > .important_links {
+        @include flexBox(center, flex-start);
+        flex-wrap: wrap;
+        gap: 4rem 10rem;
+        & > div {
+            @include flexBox(flex-start, flex-start);
+            flex-direction: column;
+            & > h3 {
+                margin: 0 0 1.6rem;
+            }
+            & > a {
+                color: $tertiary-color;
+                font-size: 1.4rem;
+                & + a {
+                    margin-top: 0.8rem;
+                }
+            }
+        }
+        @include breakpoints(responsive-footer) {
+            justify-content: flex-start;
+        }
+    }
+    & > .logo_container {
+        @include flexBox;
+        gap: 2rem;
+        & > .logo {
+            $dimension: 4rem;
+            width: $dimension;
+            height: $dimension;
+        }
+        & > h2 {
+            margin: 0;
+        }
+    }
+}

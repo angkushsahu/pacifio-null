@@ -1,0 +1,11 @@
+@use "styles/variables" as *;
+
+.address > form > .delete_address__button {
+    width: fit-content;
+    padding: 0;
+    display: block;
+    background-color: transparent;
+    color: $primary-color;
+    margin: 2rem 0 0 auto;
+    font-size: 1.4rem;
+}

@@ -1,0 +1,33 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+
+.categories {
+    padding: 5rem 2.5rem;
+    .category_container {
+        margin-top: 4rem;
+        @include flexBox;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+        a {
+            padding: 3rem 2rem;
+            max-width: 30rem;
+            width: 100%;
+            background-color: $primary-foreground;
+            border-radius: 0.6rem;
+            box-shadow: $thin-shadow;
+            svg {
+                margin: 0 auto;
+                $dimension: 4rem;
+                width: $dimension;
+                height: $dimension;
+            }
+            h3 {
+                margin: 2rem 0 0;
+                text-align: center;
+            }
+            &:hover {
+                color: $primary-color;
+            }
+        }
+    }
+}

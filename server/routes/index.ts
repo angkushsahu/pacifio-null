@@ -1,0 +1,10 @@
+export { default as auth } from "./auth.routes";
+export { default as user } from "./user.routes";
+export { default as product } from "./product.routes";
+export { default as cart } from "./cart.routes";
+export { default as address } from "./address.routes";
+export { default as order } from "./order.routes";
+export { default as reviews } from "./reviews.routes";
+export { default as payment } from "./payment.routes";
+export { default as admin } from "./admin.routes";
+export { default as misc } from "./misc.routes";

@@ -1,0 +1,14 @@
+@use "styles/mixins" as *;
+@use "styles/breakpoints" as *;
+
+.view_product {
+    @include container(transparent, 4rem 2rem);
+    .product_description {
+        @include flexBox(space-between, flex-start);
+        gap: 5rem;
+        position: relative;
+        @include breakpoints(responsive-product-page) {
+            flex-direction: column;
+        }
+    }
+}

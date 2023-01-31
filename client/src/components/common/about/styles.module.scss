@@ -1,0 +1,15 @@
+.about {
+    padding: 3rem 2rem;
+    h1 {
+        font-size: 3.2rem;
+    }
+    p {
+        max-width: 70ch;
+        font-size: 1.8rem;
+        margin: 0 auto;
+        line-height: 3.5rem;
+    }
+    p + p {
+        margin-top: 2.5rem;
+    }
+}

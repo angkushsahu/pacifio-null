@@ -1,0 +1,29 @@
+@use "styles/mixins" as *;
+
+.success,
+.failure {
+    padding: 2rem;
+    min-height: 100vh;
+    @include flexBox(center, center, column);
+    .image {
+        max-width: 25rem;
+    }
+    h2 {
+        margin: 0;
+    }
+}
+
+.success {
+    position: relative;
+    isolation: isolate;
+    .background {
+        position: absolute;
+        inset: 0;
+        min-height: 100vh;
+        object-fit: cover;
+        z-index: -1;
+    }
+    a {
+        margin-top: 4rem;
+    }
+}

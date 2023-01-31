@@ -1,0 +1,25 @@
+@use "styles/variables" as *;
+
+td > span {
+    &.processing,
+    &.shipped,
+    &.delivered {
+        font-size: 1.4rem;
+        max-width: 7.6rem;
+        width: 100%;
+        display: block;
+        border-radius: 0.2rem;
+        font-weight: 600;
+        color: $primary-foreground;
+        padding: 0.2rem 0 0.2rem 0.2rem;
+    }
+    &.processing {
+        background-color: $error-color;
+    }
+    &.shipped {
+        background-color: $warning-color;
+    }
+    &.delivered {
+        background-color: $success-color;
+    }
+}

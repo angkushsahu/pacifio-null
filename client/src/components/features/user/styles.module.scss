@@ -1,0 +1,82 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+@use "styles/breakpoints" as *;
+
+.user {
+    @include container;
+    padding: 3rem 2rem 4rem;
+    &_profile {
+        @include flexBox;
+        gap: 4rem;
+        & > img,
+        & > svg {
+            $dimension: 15rem;
+            width: $dimension;
+            height: $dimension;
+            object-fit: contain;
+        }
+        &__info > a {
+            & > button {
+                margin-top: 2rem;
+                &.update_profile {
+                    margin-top: 3.5rem;
+                }
+                display: block;
+                max-width: 19rem;
+                width: 100%;
+                @include breakpoints(mobile-md-2) {
+                    max-width: 30rem;
+                }
+            }
+        }
+        @include breakpoints(mobile-md-2) {
+            flex-direction: column;
+            text-align: center;
+            gap: 2rem;
+        }
+    }
+    .quick_links {
+        h2 {
+            margin-top: 5rem;
+            position: relative;
+            isolation: isolate;
+            &::after,
+            &::before {
+                content: "";
+                position: absolute;
+                transform: translate(-50%, -50%);
+                top: 50%;
+                left: 50%;
+            }
+            &::before {
+                background-color: $primary-background;
+                height: 100%;
+                width: 16rem;
+                z-index: -1;
+            }
+            &::after {
+                z-index: -2;
+                height: 2px;
+                max-width: 35rem;
+                width: 100%;
+                background-color: #5e5e5e;
+            }
+        }
+        .button_group {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(20rem, 30rem));
+            grid-gap: 2rem;
+            justify-content: center;
+            & > a,
+            & > a > button,
+            & > button {
+                display: block;
+                width: 100%;
+            }
+            @include breakpoints(mobile-md-2) {
+                grid-template-columns: repeat(1, minmax(20rem, 30rem));
+            }
+        }
+    }
+}

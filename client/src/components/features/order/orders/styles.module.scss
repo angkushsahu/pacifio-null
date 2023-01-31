@@ -1,0 +1,54 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+
+.no_orders {
+    min-height: $banner-height;
+    @include flexBox;
+    flex-direction: column;
+    .image {
+        max-width: 25rem;
+    }
+    h2 {
+        margin: 0;
+    }
+}
+.orders {
+    @include container;
+    padding: 3rem 2rem 4rem;
+    .order_container {
+        margin-top: 3rem;
+        @include flexBox;
+        flex-wrap: wrap;
+        gap: 2.5rem;
+        & > a {
+            max-width: 40rem;
+            width: 100%;
+            .order {
+                border-radius: 1rem;
+                padding: 2rem;
+                background-color: $primary-foreground;
+                & > h3 {
+                    margin: 0 0 1rem 0;
+                }
+                & > p {
+                    margin: 1rem 0 1rem auto;
+                    padding: 0.6rem 1.2rem;
+                    font-size: 1.4rem;
+                    max-width: fit-content;
+                    border-radius: 1.5rem;
+                    font-weight: 600;
+                    color: $primary-foreground;
+                    &.processing {
+                        background-color: $error-color;
+                    }
+                    &.shipped {
+                        background-color: $warning-color;
+                    }
+                    &.delivered {
+                        background-color: $success-color;
+                    }
+                }
+            }
+        }
+    }
+}

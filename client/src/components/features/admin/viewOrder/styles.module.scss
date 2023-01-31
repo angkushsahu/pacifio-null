@@ -1,0 +1,76 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+@use "styles/breakpoints" as *;
+
+.title {
+    margin: 0;
+    text-align: center;
+}
+.order_status_info,
+.payment_info {
+    @include flexBox(flex-start);
+    gap: 1ch;
+}
+.order_status_info {
+    margin-top: 1.6rem;
+}
+.processing,
+.shipped,
+.delivered,
+.unpaid_pill,
+.paid_pill {
+    padding: 0.4rem 1rem;
+    font-size: 1.4rem;
+    color: $primary-foreground;
+    border-radius: 0.4rem;
+    width: fit-content;
+    font-weight: 600;
+    display: inline-block;
+    @include flexBox;
+    gap: 0.6rem;
+    & > svg {
+        font-size: 1.8rem;
+    }
+}
+.unpaid_pill {
+    background-color: $error-color;
+}
+.paid_pill {
+    background-color: $success-color;
+}
+.processing {
+    background-color: $error-color;
+}
+.shipped {
+    background-color: $warning-color;
+}
+.delivered {
+    background-color: $success-color;
+}
+
+.table_header {
+    margin-top: 4rem;
+}
+
+form.order_status__container {
+    margin: 3rem auto 0;
+    max-width: 50rem;
+    & > select {
+        max-width: 30rem;
+        border-bottom: 2px solid #808080;
+        margin-left: 2rem;
+    }
+    & > button[type="submit"] {
+        display: block;
+        margin-top: 4rem;
+        width: 100%;
+    }
+    @include breakpoints(mobile-md-3) {
+        & > select {
+            max-width: none;
+            margin-left: 0;
+            padding-left: 0;
+            margin-top: 0.5rem;
+        }
+    }
+}

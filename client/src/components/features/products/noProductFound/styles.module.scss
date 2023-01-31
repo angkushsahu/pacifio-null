@@ -1,0 +1,14 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+
+.not_found {
+    padding: 2rem;
+    min-height: calc(100vh - (2 * $header-height));
+    @include flexBox(center, center, column);
+    .image {
+        max-width: 25rem;
+    }
+    h2 {
+        margin: 0;
+    }
+}

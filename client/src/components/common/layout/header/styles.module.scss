@@ -1,0 +1,238 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+@use "styles/breakpoints" as *;
+
+.header {
+    $color: $primary-foreground;
+    background-color: $color;
+    @include container($color);
+    padding: 1.5rem 2rem;
+    @include flexBox(space-between);
+    position: sticky;
+    inset: 0;
+    bottom: auto;
+    z-index: 2;
+    .logo_and_links {
+        @include flexBox(flex-start);
+        gap: 3rem;
+        .logo {
+            $dimension: 4rem;
+            width: $dimension;
+            height: $dimension;
+        }
+        .links_container {
+            .links + .links {
+                margin-left: 2rem;
+            }
+            .links {
+                font-size: 1.4rem;
+                &.active {
+                    color: $primary-color;
+                    text-decoration: underline;
+                    text-underline-position: under;
+                }
+                &:hover {
+                    color: $primary-hover-color;
+                }
+            }
+            @include breakpoints(toggle-header) {
+                display: none;
+            }
+        }
+    }
+    .search_and_importantlinks {
+        @include flexBox(flex-start);
+        gap: 3rem;
+        max-width: 50rem;
+        width: 100%;
+        .search_box {
+            cursor: pointer;
+            position: relative;
+            flex: 1;
+            @include flexBox(flex-start);
+            gap: 0.6rem;
+            background-color: $primary-background;
+            border-radius: 0.4rem;
+            padding: 0.4rem 1.2rem;
+            & > svg.search_placeholder {
+                $dimension: 2rem;
+                width: $dimension;
+                height: $dimension;
+                color: $tertiary-color;
+            }
+            & > label {
+                display: none;
+            }
+            & > input {
+                background-color: transparent;
+                padding: 0.4rem 5.6rem 0.4rem 0.4rem;
+                width: 100%;
+                &::placeholder {
+                    color: $tertiary-color;
+                    font-size: 1.4rem;
+                }
+            }
+            & > button {
+                position: absolute;
+                inset: 1px 1px 1px auto;
+                padding: 0 2rem;
+                transition: transform 300ms ease, opacity 300ms ease;
+                transform-origin: right;
+                &.show {
+                    transform: scaleX(100%);
+                    opacity: 1;
+                }
+                &.hide {
+                    transform: scaleX(0);
+                    opacity: 0;
+                }
+                & > svg.search_button__icon {
+                    $dimension: 1.6rem;
+                    width: $dimension;
+                    height: $dimension;
+                    color: #ffffff;
+                }
+            }
+            @include breakpoints(toggle-searchbar) {
+                position: absolute;
+                top: $header-height;
+                left: 2rem;
+                right: 2rem;
+            }
+        }
+        .importantlinks {
+            @include flexBox(flex-start);
+            gap: 2rem;
+            & svg {
+                cursor: pointer;
+                $dimension: 2.65rem;
+                width: $dimension;
+                height: $dimension;
+                &.hamburger {
+                    color: $primary-color;
+                    display: none;
+                    @include breakpoints(toggle-header) {
+                        display: flex;
+                    }
+                }
+                @include breakpoints(toggle-searchbar) {
+                    $dimension: 2.5rem;
+                    width: $dimension;
+                    height: $dimension;
+                }
+            }
+            & > a {
+                position: relative;
+                &.dashboard {
+                    color: $primary-color;
+                }
+                &.cart > .cart_pill {
+                    position: absolute;
+                    top: -1rem;
+                    right: -1rem;
+                    @include flexBox;
+                    $dimension: 2rem;
+                    width: $dimension;
+                    height: $dimension;
+                    border-radius: 50%;
+                    font-weight: 700;
+                    font-size: 1rem;
+                    color: $primary-foreground;
+                    background-color: $primary-color;
+                    padding: 0.4rem;
+                }
+                &:hover {
+                    & svg {
+                        color: $primary-hover-color;
+                    }
+                }
+            }
+            @include breakpoints(toggle-searchbar) {
+                margin-top: 1rem;
+            }
+        }
+        @include breakpoints(toggle-searchbar) {
+            justify-content: flex-end;
+            align-items: center;
+        }
+    }
+    @include breakpoints(toggle-searchbar) {
+        align-items: flex-start;
+        height: calc(1.85 * $header-height);
+    }
+}
+
+.mobile_navigation {
+    @include flexBox(flex-start, flex-start, column);
+    display: none;
+    gap: 2rem;
+    position: fixed;
+    inset: 0;
+    left: auto;
+    z-index: 100;
+    background-color: $primary-foreground;
+    max-width: 28rem;
+    width: 100%;
+    padding: 2rem;
+    transition: transform 300ms ease, opacity 300ms ease;
+    transform-origin: right;
+    box-shadow: $thick-shadow;
+
+    &.show {
+        transform: scaleX(100%);
+        opacity: 1;
+    }
+    &.hide {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+
+    & > svg {
+        margin: 0 0 1rem auto;
+        color: $primary-color;
+        cursor: pointer;
+        $dimension: 2.65rem;
+        width: $dimension;
+        height: $dimension;
+    }
+
+    & > a {
+        @include flexBox(flex-start);
+        gap: 1rem;
+        width: 100%;
+        &.cart {
+            justify-content: space-between;
+            & > span:first-child {
+                @include flexBox(flex-start);
+                gap: 1rem;
+            }
+            & > span:nth-child(2) {
+                @include flexBox;
+                $dimension: 2rem;
+                width: $dimension;
+                height: $dimension;
+                border-radius: 50%;
+                font-weight: 700;
+                font-size: 1rem;
+                color: $primary-foreground;
+                background-color: $primary-color;
+                padding: 0.4rem;
+            }
+        }
+        &.active {
+            color: $primary-color;
+        }
+        & > svg {
+            $dimension: 2rem;
+            width: $dimension;
+            height: $dimension;
+        }
+        & p {
+            margin: 0;
+        }
+    }
+
+    @include breakpoints(toggle-header) {
+        display: flex;
+    }
+}

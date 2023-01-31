@@ -1,0 +1,39 @@
+@use "styles/variables" as *;
+@use "styles/breakpoints" as *;
+
+.product_images__container {
+    flex: 1;
+    position: sticky;
+    inset: 0;
+    top: calc($header-height + 4rem);
+    bottom: auto;
+    // -------- carousel reset css --------
+    & > div > div:nth-child(4) {
+        z-index: 1;
+        visibility: none;
+        position: absolute;
+        & > button {
+            transform: translateY(-4rem);
+        }
+    }
+    // -------- carousel reset css --------
+    .product_images {
+        position: relative;
+        isolation: isolate;
+        min-height: 35rem;
+        height: 100%;
+        & > img {
+            cursor: grab;
+            position: absolute;
+            inset: 0;
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+    }
+    @include breakpoints(responsive-product-page) {
+        position: static;
+        width: 100%;
+    }
+}

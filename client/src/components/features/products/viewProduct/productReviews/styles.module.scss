@@ -1,0 +1,55 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+
+.product_reviews__container {
+    margin-top: 4rem;
+    & > h2 {
+        margin: 6rem 0 3rem;
+    }
+    .product_reviews {
+        width: 100%;
+        overflow-x: auto;
+        @include flexBox(flex-start);
+        gap: 3rem;
+        padding: 1rem 0;
+        & > article {
+            position: relative;
+            isolation: isolate;
+            padding: 2rem;
+            background-color: $primary-foreground;
+            border-radius: 0.6rem;
+            box-shadow: $thin-shadow;
+            min-width: 28rem;
+            max-width: 30rem;
+            width: 100%;
+            & > .delete_icon {
+                cursor: pointer;
+                $dimension: 1.6rem;
+                width: $dimension;
+                height: $dimension;
+                position: absolute;
+                right: 2rem;
+                top: 2rem;
+            }
+            & > h3,
+            & > p {
+                margin: 1rem 0;
+            }
+            .read_more,
+            .read_less {
+                margin: 0;
+                font-size: 1.4rem;
+                color: $primary-color;
+                cursor: pointer;
+            }
+        }
+        scrollbar-width: thin;
+        scrollbar-color: $primary-color transparent;
+        &::-webkit-scrollbar {
+            height: 0.5rem;
+            &-track {
+                background-color: transparent;
+            }
+        }
+    }
+}

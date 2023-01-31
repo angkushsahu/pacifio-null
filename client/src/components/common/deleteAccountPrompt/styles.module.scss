@@ -1,0 +1,13 @@
+@use "styles/mixins" as *;
+
+.delete_account__prompt {
+    padding: 2rem;
+    min-height: 100vh;
+    @include flexBox(center, center, column);
+    .image {
+        max-width: 25rem;
+    }
+    h2 {
+        margin: 0 0 2rem;
+    }
+}

@@ -1,0 +1,97 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+@use "styles/breakpoints" as *;
+
+.view_order {
+    padding: 2rem 2rem 3rem;
+    @include container;
+    & > h1 {
+        margin: 3rem 0;
+    }
+    & > .address_details {
+        & > .order_status_info,
+        & > .payment_info {
+            @include flexBox(flex-start);
+            gap: 1ch;
+        }
+    }
+    & > h3 {
+        margin-top: 4rem;
+    }
+    .cart_info {
+        position: relative;
+        padding: 0 0 4rem;
+        @include flexBox(flex-start, flex-start);
+        gap: 2rem;
+        .cart_items {
+            flex: 1;
+            width: 100%;
+        }
+        .cart_subtotal {
+            position: sticky;
+            inset: 0;
+            top: 14.5rem;
+            background-color: $primary-foreground;
+            padding: 1rem 3rem;
+            max-width: 32rem;
+            width: 100%;
+            border-radius: 0.6rem;
+            & > h2 {
+                margin: 1rem 0 2rem;
+            }
+            & > h3 {
+                margin: 0 0 1rem;
+            }
+            & > a > button,
+            & > button {
+                margin: 1.5rem 0;
+                width: 100%;
+            }
+            @include breakpoints(desktop-md) {
+                position: static;
+                max-width: none;
+                order: -1;
+            }
+        }
+        @include breakpoints(desktop-md) {
+            flex-direction: column;
+        }
+    }
+}
+
+.order_status_info {
+    margin-top: 1.6rem;
+}
+.processing,
+.shipped,
+.delivered,
+.unpaid_pill,
+.paid_pill {
+    padding: 0.4rem 1rem;
+    font-size: 1.4rem;
+    color: $primary-foreground;
+    border-radius: 0.4rem;
+    width: fit-content;
+    font-weight: 600;
+    display: inline-block;
+    @include flexBox;
+    gap: 0.6rem;
+    & > svg {
+        font-size: 1.8rem;
+    }
+}
+.unpaid_pill {
+    background-color: $error-color;
+}
+.paid_pill {
+    background-color: $success-color;
+}
+.processing {
+    background-color: $error-color;
+}
+.shipped {
+    background-color: $warning-color;
+}
+.delivered {
+    background-color: $success-color;
+}

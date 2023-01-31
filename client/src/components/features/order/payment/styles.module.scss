@@ -1,0 +1,28 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+
+.payment {
+    @include container;
+    padding: 4rem 2rem;
+    &_form {
+        max-width: 50rem;
+        margin: 0 auto;
+        .input_container {
+            border-bottom: 2px solid #808080;
+            padding: 1rem;
+            & + .input_container {
+                margin-top: 1rem;
+            }
+            & > label {
+                font-size: 1.4rem;
+                color: $tertiary-color;
+                margin-bottom: 0.5rem;
+                display: block;
+            }
+        }
+        & > button {
+            margin-top: 4rem;
+            width: 100%;
+        }
+    }
+}

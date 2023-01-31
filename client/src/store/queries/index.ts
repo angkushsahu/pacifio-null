@@ -1,0 +1,11 @@
+export * from "./address.queries";
+export * from "./admin.queries";
+export * from "./auth.queries";
+export * from "./cart.queries";
+export * from "./order.queries";
+export * from "./payment.queries";
+export * from "./product.queries";
+export * from "./review.queries";
+export * from "./user.queries";
+export * from "./misc.queries";
+export { default as apiQueries } from "./api.queries";

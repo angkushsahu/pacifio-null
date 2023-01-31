@@ -1,0 +1,27 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+
+.loading {
+    min-height: 100vh;
+    width: 100%;
+    @include flexBox;
+    &_component {
+        margin: 0 auto;
+        $dimension: 8rem;
+        width: $dimension;
+        height: $dimension;
+        border-radius: 50%;
+        border: 0.6rem solid $primary-color;
+        border-top-color: transparent;
+        animation: rotate 1s linear infinite;
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotateZ(0deg);
+    }
+    to {
+        transform: rotateZ(360deg);
+    }
+}

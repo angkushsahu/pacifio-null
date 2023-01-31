@@ -1,0 +1,33 @@
+@use "sass:math";
+
+@function em($pixel) {
+    @if math.is-unitless($pixel) {
+        @return math.div($pixel, 16) + em;
+    }
+    @error "Cannot use units while using em function. You used an unit with value #{$pixel}";
+}
+
+$breakpoints-scale: (
+    "mobile-xs": em(350),
+    "mobile-sm": em(400),
+    "mobile-md": em(450),
+    "mobile-md-2": em(500),
+    "mobile-md-3": em(550),
+    "mobile-lg": em(600),
+    "toggle-searchbar": em(620),
+    "responsive-footer": em(460),
+    "tablet-sm": em(750),
+    "tablet-md": em(800),
+    "responsive-product-page": em(850),
+    "toggle-header": em(900),
+    "responsive-messages": em(1000),
+    "desktop-sm": em(1050),
+    "desktop-md": em(1100),
+    "toggle-admin-sidebar": em(1250),
+);
+
+@mixin breakpoints($size) {
+    @media screen and (max-width: map-get($breakpoints-scale, $size)) {
+        @content;
+    }
+}

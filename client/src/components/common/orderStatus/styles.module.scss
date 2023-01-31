@@ -1,0 +1,30 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+@use "styles/breakpoints" as *;
+
+.status_container {
+    @include flexBox;
+    flex-wrap: wrap;
+    gap: 6rem;
+    @include breakpoints(toggle-searchbar) {
+        gap: 3rem;
+        gap: 1.5rem 3rem;
+    }
+    margin-bottom: 4rem;
+    .status {
+        &.active {
+            color: $primary-color;
+        }
+        @include flexBox;
+        flex-direction: column;
+        & > svg {
+            $dimension: 2.5rem;
+            width: $dimension;
+            height: $dimension;
+        }
+        & > p {
+            margin: 1rem 0;
+            font-size: 1.2rem;
+        }
+    }
+}

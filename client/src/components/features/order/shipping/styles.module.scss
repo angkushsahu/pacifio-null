@@ -1,0 +1,45 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+
+.shipping {
+    @include container;
+    padding: 4rem 2rem;
+    .address_container {
+        margin-top: 3rem;
+        @include flexBox;
+        flex-wrap: wrap;
+        gap: 2rem;
+        .address {
+            padding: 1rem 2rem;
+            background-color: $primary-foreground;
+            border-radius: 0.6rem;
+            max-width: 40rem;
+            width: 100%;
+            & > p {
+                margin: 1rem 0;
+            }
+            & > .address_actions {
+                @include flexBox;
+                gap: 0.75rem;
+                & > svg {
+                    cursor: pointer;
+                    $dimension: 2rem;
+                    width: $dimension;
+                    height: $dimension;
+                }
+                button {
+                    margin: 1rem 0 1rem auto;
+                    display: block;
+                    padding: 0.5rem 1.5rem;
+                    font-size: 1.4rem;
+                }
+            }
+        }
+    }
+    & > a > .add_new_address {
+        margin: 4rem auto 0;
+        display: block;
+        max-width: 40rem;
+        width: 100%;
+    }
+}

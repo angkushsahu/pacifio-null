@@ -1,0 +1,120 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+@use "styles/breakpoints" as *;
+
+.cart_item {
+    background-color: $primary-foreground;
+    border-radius: 0.6rem;
+    padding: 1rem 2rem;
+    & + .cart_item {
+        margin-top: 2rem;
+    }
+    &__info {
+        @include flexBox(flex-start, flex-start);
+        gap: 2rem;
+        padding: 1rem 0 2rem;
+        h3,
+        p {
+            max-width: 50ch;
+            margin: 1rem 0;
+            @include breakpoints(tablet-sm) {
+                max-width: none;
+            }
+        }
+        .cart_item__title {
+            font-weight: 400;
+            font-size: 1.8rem;
+            &:hover {
+                color: $primary-color;
+            }
+            @include breakpoints(tablet-sm) {
+                text-align: center;
+            }
+        }
+        & > h3 {
+            margin-left: 1rem;
+            @include breakpoints(tablet-sm) {
+                margin-left: 0;
+            }
+        }
+        img {
+            $dimension: 15rem;
+            width: $dimension;
+            object-fit: cover;
+            @include breakpoints(tablet-sm) {
+                margin: 0 auto;
+                width: 100%;
+                height: 20rem;
+                object-fit: contain;
+            }
+        }
+        // add to cart container --> start
+        & .cart_operations {
+            @include flexBox(flex-start);
+            gap: 2rem;
+            .add_to_cart {
+                @include flexBox(flex-start);
+                max-width: 31rem;
+                width: 100%;
+                margin: 2rem 0 1rem;
+                label {
+                    display: none;
+                }
+                input {
+                    padding: 0.7rem;
+                    max-width: 20rem;
+                    width: 100%;
+                    text-align: center;
+                    background-color: #efefef34;
+                }
+                .cart_button__container {
+                    @include flexBox;
+                    cursor: pointer;
+                    padding: 1rem 2rem;
+                    background-color: $primary-background;
+                    & > svg {
+                        $dimension: 1.6rem;
+                        width: $dimension;
+                        height: $dimension;
+                    }
+                }
+            }
+            .delete_item {
+                width: fit-content;
+                cursor: pointer;
+                font-size: 1.3rem;
+                font-weight: 300;
+                &:hover {
+                    color: $primary-color;
+                }
+            }
+            @include breakpoints(tablet-sm) {
+                flex-direction: column;
+                gap: 0;
+                margin-bottom: 2rem;
+                .delete_item {
+                    margin: 0;
+                }
+            }
+        }
+        // add to cart container --> end
+        @include breakpoints(tablet-sm) {
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+    }
+    &__title_quantity {
+        flex: 1;
+    }
+    &__subtotal {
+        border-top: 0.5px solid #4f4f4f;
+        @include flexBox(flex-end);
+        gap: 2rem;
+        &__heading > span {
+            @include breakpoints(mobile-xs) {
+                display: block;
+            }
+        }
+    }
+}

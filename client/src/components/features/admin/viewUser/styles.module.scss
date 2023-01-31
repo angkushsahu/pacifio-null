@@ -1,0 +1,37 @@
+@use "styles/breakpoints" as *;
+
+.admin_workspace__title {
+    margin-top: 0;
+    & + img,
+    & + svg {
+        margin-top: 4rem;
+        $dimension: 12rem;
+        width: $dimension;
+        height: $dimension;
+        object-fit: contain;
+        border-radius: 50%;
+    }
+}
+
+form.user_role__container {
+    margin: 3rem auto 0;
+    max-width: 45rem;
+    & > select {
+        max-width: 30rem;
+        border-bottom: 2px solid #808080;
+        margin-left: 2rem;
+    }
+    & > button[type="submit"] {
+        display: block;
+        margin-top: 4rem;
+        width: 100%;
+    }
+    @include breakpoints(mobile-md-2) {
+        & > select {
+            max-width: none;
+            margin-left: 0;
+            padding-left: 0;
+            margin-top: 0.5rem;
+        }
+    }
+}

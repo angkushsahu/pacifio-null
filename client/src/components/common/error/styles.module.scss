@@ -1,0 +1,14 @@
+@use "styles/mixins" as *;
+
+.error {
+    min-height: 100vh;
+    padding: 0 2rem;
+    @include flexBox(center, center, column);
+    & > img {
+        max-width: 50rem;
+        width: 100%;
+    }
+    & > h2 {
+        margin: 0 0 4rem;
+    }
+}

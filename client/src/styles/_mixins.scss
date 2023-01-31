@@ -1,0 +1,14 @@
+@mixin flexBox($jc: center, $ai: center, $direction: row) {
+    display: flex;
+    align-items: $ai;
+    justify-content: $jc;
+    flex-direction: $direction;
+}
+
+@mixin container($color: transparent, $padding: 0 2rem) {
+    padding: $padding;
+    max-width: 130rem;
+    margin: 0 auto;
+    box-shadow: 0 0 0 100vmax $color;
+    clip-path: inset(0 -100vmax);
+}

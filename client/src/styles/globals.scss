@@ -1,0 +1,441 @@
+@use "./mixins" as *;
+@use "./breakpoints" as *;
+@use "./variables" as *;
+
+:root {
+    scrollbar-color: $primary-color $primary-background;
+    scrollbar-width: thin;
+}
+
+.root {
+    background-color: $primary-background;
+    min-height: 100vh;
+    color: #ffffff;
+}
+
+::-webkit-scrollbar {
+    width: 1rem;
+    &-track {
+        background-color: $primary-background;
+    }
+    &-thumb {
+        background-color: $primary-color;
+        &:hover {
+            background-color: $primary-hover-color;
+        }
+    }
+}
+
+.text-center {
+    text-align: center;
+}
+
+input,
+textarea,
+select,
+option,
+button {
+    border: none;
+    outline: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+select {
+    width: 100%;
+    background-color: transparent;
+    padding: 0.5rem;
+    & > option {
+        background-color: $primary-background;
+        &[value=""] {
+            color: $tertiary-color;
+        }
+        &:first-child {
+            color: $tertiary-color;
+        }
+    }
+}
+
+button {
+    padding: 1rem 3rem;
+    border-radius: 0.4rem;
+    font-weight: 600;
+    background-color: $primary-color;
+    color: $primary-foreground;
+    &:hover {
+        background-color: $primary-hover-color;
+    }
+}
+
+.product_parent {
+    padding: 5rem 4rem;
+    & > h1,
+    & > h2,
+    & > h3 {
+        text-align: center;
+    }
+    .product_container {
+        margin-top: 6rem;
+        @include flexBox(center, flex-start);
+        flex-wrap: wrap;
+        gap: 4rem;
+        .product {
+            max-width: 35rem;
+            width: 100%;
+            box-shadow: $thin-shadow;
+            background-color: $primary-foreground;
+            $border-radius: 0.8rem;
+            border-radius: $border-radius;
+            align-self: stretch;
+            &_card {
+                width: 100%;
+                height: 100%;
+                & > .product_image__container {
+                    overflow: hidden;
+                    img {
+                        border-radius: $border-radius $border-radius 0 0;
+                        width: 100%;
+                        max-height: 28rem;
+                        object-fit: cover;
+                        transition: transform 300ms ease;
+                    }
+                }
+                & > .product_details__container {
+                    padding: 2rem 1.5rem 3rem;
+                    h2,
+                    h3 {
+                        margin: 0;
+                    }
+                    .product_rating {
+                        margin: 1rem 0;
+                        @include flexBox(flex-start);
+                        gap: 1rem;
+                        & > span {
+                            color: $tertiary-color;
+                            font-size: 1.4rem;
+                        }
+                    }
+                    .product__in_stock,
+                    .product__out_of_stock {
+                        font-size: 1.4rem;
+                        margin: 1rem 0 0;
+                    }
+                    .product__in_stock {
+                        color: $success-color;
+                    }
+                    .product__out_of_stock {
+                        color: $error-color;
+                    }
+                }
+                &:hover {
+                    & > .product_image__container {
+                        img {
+                            transform: scale(1.1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @include breakpoints(mobile-md) {
+        padding: 5rem 2rem;
+    }
+}
+
+.form-container {
+    padding: 2rem 1rem;
+    min-height: 100vh;
+    @include flexBox(center);
+    @include breakpoints(tablet-md) {
+        justify-content: center;
+    }
+    isolation: isolate;
+    & > .image-container {
+        position: fixed;
+        z-index: -1;
+        inset: 0;
+        & > img {
+            object-fit: cover;
+            height: 100%;
+        }
+    }
+    & > form {
+        box-shadow: $thick-shadow;
+        background-color: $primary-foreground;
+        padding: 5rem;
+        max-width: 60rem;
+        width: 100%;
+        @include breakpoints(tablet-md) {
+            max-width: none;
+        }
+        @include breakpoints(mobile-md) {
+            padding: 2rem;
+        }
+        & > h1,
+        & > h2 {
+            margin: 0 0 3rem;
+            text-align: center;
+        }
+        & .avatar-image--container {
+            @include flexBox;
+            width: fit-content;
+            margin: 0 auto 2rem;
+            & > .avatar-image {
+                $dimension: 10rem;
+                width: $dimension;
+                height: $dimension;
+                object-fit: contain;
+                border-radius: 50%;
+                clip-path: circle(50% at 50% 50%);
+            }
+        }
+        & > button {
+            margin-top: 3rem;
+            width: 100%;
+        }
+        & .more-links--wrapper {
+            @include flexBox(flex-end);
+            margin-top: 1rem;
+            & > .more-links {
+                font-size: 1.4rem;
+                color: $tertiary-color;
+                &:hover {
+                    color: $secondary-color;
+                }
+            }
+        }
+        & > .input-container {
+            border-bottom: 2px solid #808080;
+            position: relative;
+            padding: 1rem;
+            & + .input-container {
+                margin-top: 1.5rem;
+            }
+            &.checkbox-container {
+                border-bottom: none;
+                @include flexBox(flex-start);
+                gap: 0.5rem;
+                & > label {
+                    order: 1;
+                    width: fit-content;
+                }
+                & > input[type="checkbox"] {
+                    width: fit-content;
+                }
+            }
+            &.avatar-container {
+                border: 2px solid $primary-color;
+                border-radius: 0.4rem;
+                margin-top: 2.5rem;
+                cursor: pointer;
+                & > label {
+                    text-align: center;
+                    color: $primary-color;
+                    font-weight: 600;
+                }
+                & > input[type="file"] {
+                    display: none;
+                }
+            }
+            & > label {
+                font-size: 1.4rem;
+                color: $tertiary-color;
+            }
+            & > label,
+            & > input {
+                display: block;
+                width: 100%;
+                cursor: pointer;
+            }
+            & > input,
+            & > textarea {
+                width: 100%;
+                background-color: transparent;
+                padding: 0.5rem;
+            }
+            & > textarea {
+                height: 10rem;
+                resize: none;
+                scrollbar-width: thin;
+                scrollbar-color: $primary-color transparent;
+                &::-webkit-scrollbar {
+                    width: 0.5rem;
+                    &-track {
+                        background-color: transparent;
+                    }
+                }
+            }
+            & > svg {
+                cursor: pointer;
+                position: absolute;
+                right: 1rem;
+                bottom: 1.5rem;
+                font-size: 2rem;
+            }
+        }
+    }
+}
+
+.admin-pages {
+    @include flexBox(flex-start, flex-start);
+    & > .admin-loading--section {
+        flex: 1;
+        min-height: calc(100vh - $header-height);
+        @include flexBox;
+        @include breakpoints(toggle-searchbar) {
+            min-height: calc(100vh - 14rem);
+        }
+    }
+    & > section.admin-workspace {
+        flex: 1;
+        padding: 2rem 2rem 4rem;
+        & > .admin-title-search {
+            @include flexBox(space-between);
+            margin-bottom: 2rem;
+            & > .admin-workspace--title {
+                margin: 0;
+            }
+            .search_box {
+                cursor: pointer;
+                position: relative;
+                @include flexBox(flex-start);
+                gap: 0.6rem;
+                background-color: $primary-foreground;
+                border-radius: 0.4rem;
+                padding: 0.4rem 1.2rem;
+                & > svg.search_placeholder {
+                    $dimension: 2rem;
+                    width: $dimension;
+                    height: $dimension;
+                    color: $tertiary-color;
+                }
+                & > label {
+                    display: none;
+                }
+                & > input {
+                    background-color: transparent;
+                    padding: 0.4rem 5.6rem 0.4rem 0.4rem;
+                    width: 100%;
+                    &::placeholder {
+                        color: $tertiary-color;
+                        font-size: 1.4rem;
+                    }
+                }
+                & > button {
+                    position: absolute;
+                    inset: 1px 1px 1px auto;
+                    padding: 0 2rem;
+                    transition: transform 300ms ease, opacity 300ms ease;
+                    transform-origin: right;
+                    &.show {
+                        transform: scaleX(100%);
+                        opacity: 1;
+                    }
+                    &.hide {
+                        transform: scaleX(0);
+                        opacity: 0;
+                    }
+                    & > svg.search_button__icon {
+                        $dimension: 1.6rem;
+                        width: $dimension;
+                        height: $dimension;
+                        color: #ffffff;
+                    }
+                }
+            }
+            @include breakpoints(mobile-md-2) {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+                & > .search_box {
+                    width: 100%;
+                }
+            }
+        }
+        & > div.admin_table__container {
+            padding-bottom: 1rem;
+            overflow: auto;
+            & > table.admin_table {
+                border-collapse: collapse;
+                min-width: 80rem;
+                width: 100%;
+                position: relative;
+                isolation: isolate;
+                & > thead {
+                    position: sticky;
+                    inset: 0;
+                    bottom: auto;
+                    text-align: left;
+                    background-color: #131313;
+                }
+                & > thead > tr,
+                & > tbody > tr {
+                    $padding-x: 0.6rem;
+                    $padding-y: 1rem;
+                    & > th,
+                    & > td {
+                        padding: $padding-y $padding-x;
+                        &:first-child {
+                            padding: $padding-y 0 $padding-y $padding-x;
+                        }
+                        &:last-child {
+                            padding: $padding-y $padding-x $padding-y 0;
+                        }
+                    }
+                    & > th {
+                        padding: 1.2rem $padding-x;
+                    }
+                }
+                & > tbody > tr {
+                    cursor: pointer;
+                    &:nth-child(2n) {
+                        background-color: $primary-foreground;
+                    }
+                }
+            }
+            scrollbar-width: thin;
+            scrollbar-color: $primary-color transparent;
+            &::-webkit-scrollbar {
+                height: 0.5rem;
+                &-track {
+                    background-color: transparent;
+                }
+            }
+            @include breakpoints(mobile-lg) {
+                font-size: 1.4rem;
+            }
+        }
+    }
+    @include breakpoints(toggle-admin-sidebar) {
+        flex-direction: column;
+        & > .admin-workspace {
+            width: 100%;
+        }
+    }
+}
+
+// ---------- pagination styles ----------
+.pagination_container {
+    margin-top: 8rem;
+    .pagination {
+        @include flexBox;
+        color: $primary-foreground;
+        font-weight: 600;
+        & > li {
+            & > a {
+                padding: 2rem;
+                background-color: $primary-color;
+                &:hover {
+                    background-color: $primary-hover-color;
+                }
+            }
+            &.active_page,
+            &.active_link__page {
+                & > a {
+                    background-color: $pagination-active-color;
+                }
+            }
+        }
+    }
+}
+// ---------- pagination styles ----------

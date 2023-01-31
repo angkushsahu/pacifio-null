@@ -1,0 +1,49 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+@use "styles/breakpoints" as *;
+
+.cart {
+    @include container;
+    & > h1 {
+        margin: 3rem 0;
+    }
+    .cart_info {
+        position: relative;
+        padding: 0 0 4rem;
+        @include flexBox(flex-start, flex-start);
+        gap: 2rem;
+        .cart_items {
+            flex: 1;
+            width: 100%;
+        }
+        .cart_subtotal {
+            position: sticky;
+            inset: 0;
+            top: 14.5rem;
+            background-color: $primary-foreground;
+            padding: 1rem 3rem;
+            max-width: 32rem;
+            width: 100%;
+            border-radius: 0.6rem;
+            & > h2 {
+                margin: 1rem 0 2rem;
+            }
+            & > h3 {
+                margin: 0 0 1rem;
+            }
+            & > a > button,
+            & > button {
+                margin: 1.5rem 0;
+                width: 100%;
+            }
+            @include breakpoints(desktop-md) {
+                position: static;
+                max-width: none;
+                order: -1;
+            }
+        }
+        @include breakpoints(desktop-md) {
+            flex-direction: column;
+        }
+    }
+}

@@ -1,0 +1,120 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+@use "styles/breakpoints" as *;
+
+.admin_sidebar {
+    padding: 0.1rem 1rem;
+    position: sticky;
+    inset: 0;
+    top: $header-height;
+    right: auto;
+    background-color: $primary-foreground;
+    box-shadow: $thick-shadow;
+    max-width: 27rem;
+    width: 100%;
+    min-height: calc(100vh - $header-height);
+    height: 100%;
+    transition: transform 300ms ease, opacity 300ms ease;
+    transform-origin: left;
+    & > .close_sidebar {
+        display: none;
+    }
+    & a + a {
+        margin: 1.75rem 0;
+        display: block;
+    }
+    & .dashboard_title,
+    & .dashboard_options.active {
+        color: $primary-color;
+    }
+    & .dashboard_options,
+    .dashboard_options.dashboard_product__item > div {
+        cursor: pointer;
+        @include flexBox(flex-start);
+        gap: 1rem;
+        & > svg {
+            $dimension: 2.6rem;
+            width: $dimension;
+            height: $dimension;
+        }
+        & > p {
+            margin: 0;
+        }
+        &.dashboard_product__item {
+            justify-content: space-between;
+        }
+        &.dashboard_product__options {
+            padding-left: 3rem;
+            font-size: 1.4rem;
+            & > svg {
+                $dimension: 2rem;
+                width: $dimension;
+                height: $dimension;
+                &.add_product {
+                    $dimension: 1.5rem;
+                    width: $dimension;
+                    height: $dimension;
+                }
+            }
+        }
+    }
+    .dashboard_product__options__container {
+        transition: transform 300ms ease, opacity 300ms ease;
+        transform: scaleY(0);
+        opacity: 0;
+        transform-origin: top;
+        &.show {
+            transform: scaleY(100%);
+            opacity: 1;
+        }
+        & > a:first-child {
+            margin: 1.75rem 0;
+            display: block;
+        }
+    }
+    @include breakpoints(toggle-admin-sidebar) {
+        position: fixed;
+        z-index: 10;
+        height: auto;
+        &.hide {
+            transform: scaleX(0);
+            opacity: 0;
+        }
+        &.show {
+            transform: scaleX(100%);
+            opacity: 1;
+        }
+        & > .close_sidebar {
+            display: block;
+            margin: 1rem auto 1rem 0;
+            color: $tertiary-color;
+            cursor: pointer;
+            $dimension: 2.65rem;
+            width: $dimension;
+            height: $dimension;
+        }
+    }
+    @include breakpoints(toggle-searchbar) {
+        top: 12.9rem;
+        min-height: calc(100vh - 13rem);
+        height: 100%;
+    }
+}
+
+.toggle_dashboard__option {
+    display: none;
+    @include breakpoints(toggle-admin-sidebar) {
+        @include flexBox;
+        gap: 1rem;
+        margin: 2rem 2rem 0;
+        width: calc(100% - 4rem);
+        & > svg {
+            $dimension: 2.25rem;
+            width: $dimension;
+            height: $dimension;
+        }
+        & > p {
+            margin: 0;
+        }
+    }
+}
