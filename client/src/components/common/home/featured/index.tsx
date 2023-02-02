@@ -14,15 +14,17 @@ const Featured = () => {
     } else if (data && data.success && data.responseObj) {
         return (
             <section className="product_parent">
-                <h2 className="text-center">Featured Products</h2>
                 <div className="product_container">
-                    {data.responseObj.map((product) => {
-                        if (product) {
-                            return <Product product={product} route={`${product._id}`} key={product._id} />;
-                        } else {
-                            return <></>;
-                        }
-                    })}
+                    <h2 className="text-center">Featured Products</h2>
+                    <div className="product_list" style={{ justifyContent: "center" }}>
+                        {data.responseObj.map((product) => {
+                            if (product) {
+                                return <Product product={product} route={`${product._id}`} key={product._id} />;
+                            } else {
+                                return <></>;
+                            }
+                        })}
+                    </div>
                 </div>
             </section>
         );

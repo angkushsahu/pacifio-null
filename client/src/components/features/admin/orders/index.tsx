@@ -1,12 +1,12 @@
 import styles from "./styles.module.scss";
 import { FormEvent, useDeferredValue, useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Pagination from "react-js-pagination";
 import AdminSidebar from "components/common/adminSidebar";
 import { BiSearch } from "react-icons/bi";
 import LoadingComponent from "components/common/loading/component";
 import { useGetAllOrdersForAdminQuery } from "store/queries";
 import { getMonth } from "utils";
+import Pagination from "components/common/pagination";
 
 const AdminOrders = () => {
     const navigate = useNavigate();
@@ -109,18 +109,10 @@ const AdminOrders = () => {
                     {data.numberOfOrders > data.resultPerPage ? (
                         <div className="pagination_container">
                             <Pagination
-                                activePage={currentPage}
-                                itemsCountPerPage={data.resultPerPage}
-                                totalItemsCount={data.numberOfOrders}
-                                onChange={onPageChange}
-                                pageRangeDisplayed={3}
-                                nextPageText="Next"
-                                prevPageText="Previous"
-                                firstPageText="First"
-                                lastPageText="Last"
-                                activeClass="active_page"
-                                activeLinkClass="active_link__page"
-                                hideDisabled={true}
+                                currentPage={currentPage}
+                                resultPerPage={data.resultPerPage}
+                                totalResults={data.numberOfOrders}
+                                onPageChange={onPageChange}
                             />
                         </div>
                     ) : null}

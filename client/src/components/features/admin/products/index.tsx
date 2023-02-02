@@ -1,10 +1,10 @@
 import { FormEvent, useDeferredValue, useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Pagination from "react-js-pagination";
 import { BiSearch } from "react-icons/bi";
 import AdminSidebar from "components/common/adminSidebar";
 import LoadingComponent from "components/common/loading/component";
 import { useGetAllProductsForAdminQuery } from "store/queries";
+import Pagination from "components/common/pagination";
 
 const AdminProducts = () => {
     const navigate = useNavigate();
@@ -97,18 +97,10 @@ const AdminProducts = () => {
                     {data.numberOfProducts > data.resultPerPage ? (
                         <div className="pagination_container">
                             <Pagination
-                                activePage={currentPage}
-                                itemsCountPerPage={data.resultPerPage}
-                                totalItemsCount={data.numberOfProducts}
-                                onChange={onPageChange}
-                                pageRangeDisplayed={3}
-                                nextPageText="Next"
-                                prevPageText="Previous"
-                                firstPageText="First"
-                                lastPageText="Last"
-                                activeClass="active_page"
-                                activeLinkClass="active_link__page"
-                                hideDisabled={true}
+                                currentPage={currentPage}
+                                resultPerPage={data.resultPerPage}
+                                totalResults={data.numberOfProducts}
+                                onPageChange={onPageChange}
                             />
                         </div>
                     ) : null}

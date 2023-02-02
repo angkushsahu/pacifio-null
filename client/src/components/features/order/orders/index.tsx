@@ -1,10 +1,10 @@
 import styles from "./styles.module.scss";
 import failureImage from "assets/failureImage.svg";
 import { useEffect, useState } from "react";
-import Pagination from "react-js-pagination";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useMyOrdersQuery } from "store/queries";
 import LoadingPage from "components/common/loading";
+import Pagination from "components/common/pagination";
 
 const MyOrders = () => {
     const navigate = useNavigate();
@@ -66,18 +66,10 @@ const MyOrders = () => {
                         {data.numberOfOrders > data.resultPerPage ? (
                             <div className="pagination_container">
                                 <Pagination
-                                    activePage={currentPage}
-                                    itemsCountPerPage={resultPerPage}
-                                    totalItemsCount={totalResults}
-                                    onChange={onPageChange}
-                                    pageRangeDisplayed={3}
-                                    nextPageText="Next"
-                                    prevPageText="Previous"
-                                    firstPageText="First"
-                                    lastPageText="Last"
-                                    activeClass="active_page"
-                                    activeLinkClass="active_link__page"
-                                    hideDisabled={true}
+                                    currentPage={currentPage}
+                                    resultPerPage={resultPerPage}
+                                    totalResults={totalResults}
+                                    onPageChange={onPageChange}
                                 />
                             </div>
                         ) : null}

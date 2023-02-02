@@ -1,0 +1,70 @@
+@use "styles/variables" as *;
+@use "styles/mixins" as *;
+@use "styles/breakpoints" as *;
+
+.toggle_filter {
+    @include flexBox;
+    padding: 2rem 0 0 2rem;
+    display: none;
+    gap: 1rem;
+    color: $primary-color;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.8rem;
+    p {
+        margin: 0;
+    }
+    svg {
+        $dimension: 2rem;
+        width: $dimension;
+        height: $dimension;
+    }
+    @include breakpoints(toggle-filters) {
+        display: flex;
+    }
+}
+.filter {
+    max-width: 30rem;
+    width: 100%;
+    height: calc(100vh - $header-height);
+    padding: 2rem 12rem 2rem 2rem;
+    align-self: flex-start;
+    background-color: $primary-foreground;
+    position: sticky;
+    top: $header-height;
+    z-index: 1;
+    & > section {
+        .category_title {
+            margin: 2.5rem 0 0.5rem;
+            font-weight: 600;
+            font-size: 1.8rem;
+        }
+    }
+    & > .filter_header {
+        cursor: pointer;
+        @include flexBox(flex-start);
+        margin-bottom: 4rem;
+        gap: 1rem;
+        font-size: 2rem;
+        font-weight: 600;
+        color: $primary-color;
+        p {
+            margin: 0;
+        }
+    }
+    @include breakpoints(toggle-filters) {
+        position: fixed;
+        transform: scaleX(0);
+        opacity: 0;
+        transform-origin: left;
+        transition: transform 300ms ease, opacity 300ms ease;
+        &.show {
+            transform: scaleX(100%);
+            opacity: 1;
+        }
+    }
+    @include breakpoints(toggle-searchbar) {
+        top: $responsive-header-height;
+        height: calc(100vh - $responsive-header-height);
+    }
+}

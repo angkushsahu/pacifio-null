@@ -158,7 +158,7 @@
     }
     @include breakpoints(toggle-searchbar) {
         align-items: flex-start;
-        height: calc(1.85 * $header-height);
+        height: $responsive-header-height;
     }
 }
 

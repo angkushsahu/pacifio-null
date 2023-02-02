@@ -9,20 +9,16 @@ Feel free to explore the website from the link provided below.
 
 ## Tech Stack
 
-![Tech Stack](https://skillicons.dev/icons?i=ts,react,redux,css,nodejs,express,mongodb,vercel&theme=dark)
+![Tech Stack](https://skillicons.dev/icons?i=ts,react,redux,sass,nodejs,express,mongodb&theme=dark)
 
-Typescript - React - Redux - CSS - Node - Express - MongoDB - Vercel
-
-<!-- Image links to be updated -->
-
-<!-- ![Chat Nation](https://res.cloudinary.com/dvhucdquc/image/upload/v1661511875/ProjectsHomeImages/pacifio_yraiko.png) -->
+Typescript - React - Redux - SASS - Node - Express - MongoDB
 
 ## Install
 
 Download the zipped directory of this project by clicking on the green button above or clone it to your machine using the following command
 
-```bash
-git clone <link-to-be-updated>
+```git
+git clone https://github.com/angkushsahu/pacifio.git
 ```
 
 After installing the project, go to the root directory of this project and hit the commands below
