@@ -2,7 +2,6 @@ import styles from "./styles.module.scss";
 import LoadingPage from "components/common/loading";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { Country, State } from "country-state-city";
 import { toast } from "react-toastify";
 import { IAddress } from "types";
 import { useAddAddressMutation, useDeleteAddressMutation, useGetAddressQuery, useUpdateAddressMutation } from "store/queries";
@@ -82,7 +81,7 @@ const AddressForm = () => {
         }
     };
 
-    const validateInput = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const validateInput = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setAddressValues({ ...addressValues, [name]: value });
     };
@@ -117,34 +116,12 @@ const AddressForm = () => {
                         />
                     </div>
                     <div className="input-container">
-                        <label htmlFor="country">Enter your country</label>
-                        <select name="country" id="country" value={addressValues.country} onChange={validateInput}>
-                            <option value="" disabled={true}>
-                                -- Select --
-                            </option>
-                            {Country.getAllCountries().map((item: any) => (
-                                <option key={item.isoCode} value={item.isoCode}>
-                                    {item.name}
-                                </option>
-                            ))}
-                        </select>
+                        <label htmlFor="city">Enter your city</label>
+                        <input type="text" name="city" id="city" placeholder="e.g. Jorhat" value={addressValues.city} onChange={validateInput} />
                     </div>
                     <div className="input-container">
                         <label htmlFor="state">Enter your state</label>
-                        <select name="state" id="state" value={addressValues.state} onChange={validateInput}>
-                            <option value="" disabled={true}>
-                                -- Select --
-                            </option>
-                            {State.getStatesOfCountry(addressValues.country).map((item: any) => (
-                                <option key={item.isoCode} value={item.isoCode}>
-                                    {item.name}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="input-container">
-                        <label htmlFor="city">Enter your city</label>
-                        <input type="text" name="city" id="city" placeholder="e.g. Jorhat" value={addressValues.city} onChange={validateInput} />
+                        <input type="text" name="state" id="state" placeholder="e.g. J & K" value={addressValues.state} onChange={validateInput} />
                     </div>
                     <div className="input-container">
                         <label htmlFor="pincode">Enter your pincode</label>
@@ -154,6 +131,17 @@ const AddressForm = () => {
                             id="pincode"
                             placeholder="e.g. 123456"
                             value={addressValues.pincode ? addressValues.pincode : ""}
+                            onChange={validateInput}
+                        />
+                    </div>
+                    <div className="input-container">
+                        <label htmlFor="country">Enter your country</label>
+                        <input
+                            type="text"
+                            name="country"
+                            id="country"
+                            placeholder="e.g. India"
+                            value={addressValues.country}
                             onChange={validateInput}
                         />
                     </div>

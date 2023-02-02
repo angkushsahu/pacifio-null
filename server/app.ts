@@ -44,13 +44,13 @@ app.use("/api/admin", routes.admin);
 app.use("/api/misc", routes.misc);
 
 // production deployment
-import { join } from "path";
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static(join(__dirname, "../client", "build")));
-    app.get("*", (req, res) => {
-        res.sendFile(join(__dirname, "../client", "build", "index.html"));
-    });
-}
+// import { join } from "path";
+// if (process.env.NODE_ENV === "production") {
+//     app.use(express.static(join(__dirname, "../client", "build")));
+//     app.get("*", (req, res) => {
+//         res.sendFile(join(__dirname, "../client", "build", "index.html"));
+//     });
+// }
 
 import { error } from "./middlewares";
 app.use(error.invalidUrl);

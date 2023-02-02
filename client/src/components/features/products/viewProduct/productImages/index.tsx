@@ -1,5 +1,6 @@
 import styles from "./styles.module.scss";
-import Carousel from "react-material-ui-carousel";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Pagination, Navigation } from "swiper";
 
 interface ProductImagesProps {
     name: string;
@@ -9,22 +10,28 @@ interface ProductImagesProps {
 const ProductImages = ({ name, images }: ProductImagesProps) => {
     return (
         <section className={styles.product_images__container}>
-            <Carousel
-                autoPlay={true}
-                stopAutoPlayOnHover={false}
-                duration={1000}
-                interval={3000}
-                swipe={true}
-                navButtonsAlwaysVisible={true}
-                animation="slide"
-                sx={{ margin: "0 auto" }}
+            <Swiper
+                spaceBetween={30}
+                centeredSlides={true}
+                autoplay={{
+                    delay: 2000,
+                    disableOnInteraction: false,
+                }}
+                pagination={{
+                    clickable: true,
+                }}
+                navigation={true}
+                modules={[Autoplay, Pagination, Navigation]}
+                className="mySwiper"
             >
                 {images.map((image, idx) => (
-                    <div key={idx} className={styles.product_images}>
-                        <img src={image.pic} alt={name} loading="lazy" />
-                    </div>
+                    <SwiperSlide key={idx}>
+                        <div className={styles.product_images}>
+                            <img src={image.pic} alt={name} loading="lazy" />
+                        </div>
+                    </SwiperSlide>
                 ))}
-            </Carousel>
+            </Swiper>
         </section>
     );
 };

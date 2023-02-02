@@ -439,3 +439,17 @@ button {
     }
 }
 // ---------- pagination styles ----------
+
+// ---------- swiper styles ----------
+.swiper {
+    .swiper-pagination-bullet.swiper-pagination-bullet-active {
+        background: $primary-color;
+    }
+    .swiper-button-next,
+    .swiper-button-prev {
+        color: $primary-color;
+        // --swiper-theme-color: $primary-color;
+        // --swiper-navigation-color: $primary-color;
+    }
+}
+// ---------- pagination styles ----------

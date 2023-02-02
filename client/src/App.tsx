@@ -7,6 +7,9 @@ import { useAppDispatch } from "store";
 import { useGetKeyQuery, useGetUserQuery } from "store/queries";
 import { setUser, removeUser, setStripeKey, removeStripeKey } from "store/slices";
 import "react-toastify/dist/ReactToastify.css";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 const App = () => {
     const dispatch = useAppDispatch();
@@ -19,14 +22,16 @@ const App = () => {
         } else {
             dispatch(removeUser());
         }
-    }, [userData?.user, dispatch]);
+        console.log("Running useEffect");
+    }, [userData?.user, dispatch, userData]);
     useEffect(() => {
         if (getKeyData) {
             dispatch(setStripeKey({ stripeKey: getKeyData.stripeApiKey }));
         } else {
             dispatch(removeStripeKey());
         }
-    }, [getKeyData?.stripeApiKey, dispatch]);
+        console.log("Running useEffect");
+    }, [getKeyData?.stripeApiKey, dispatch, getKeyData]);
 
     return (
         <div className="root">

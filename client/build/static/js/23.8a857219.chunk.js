@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkclient=self.webpackChunkclient||[]).push([[23],{11:function(c,a,e){e(2791);a.Z=e.p+"static/media/formBackground.98542faa54951f16958aca9c32e44cd2.svg"}}]);
-//# sourceMappingURL=23.8a857219.chunk.js.map

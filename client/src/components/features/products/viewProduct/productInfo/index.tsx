@@ -17,7 +17,7 @@ interface ProductInfoProps {
 }
 
 const ProductInfo = (props: ProductInfoProps) => {
-    const [addReview, { isLoading, error }] = useAddReviewMutation();
+    const [addReview, { isLoading }] = useAddReviewMutation();
     const [addToCart] = useAddToCartMutation();
     const { description, name, price, ratings, stock, numberOfReviews, _id } = props;
     const [numberOfItems, setNumberOfItems] = useState(1);
