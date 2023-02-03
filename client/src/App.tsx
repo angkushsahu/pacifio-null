@@ -22,7 +22,6 @@ const App = () => {
         } else {
             dispatch(removeUser());
         }
-        console.log("Running useEffect");
     }, [userData?.user, dispatch, userData]);
     useEffect(() => {
         if (getKeyData) {
@@ -30,7 +29,6 @@ const App = () => {
         } else {
             dispatch(removeStripeKey());
         }
-        console.log("Running useEffect");
     }, [getKeyData?.stripeApiKey, dispatch, getKeyData]);
 
     return (

@@ -9,7 +9,6 @@ Chart.register(ArcElement, Tooltip, Legend);
 
 const AdminDashboard = () => {
     const { data, isLoading } = useGetStatsForAdminQuery();
-    console.log(data);
 
     const productsData = {
         labels: ["Out of Stock", "Available"],
