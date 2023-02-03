@@ -40,7 +40,9 @@ const Header = () => {
 
     const onSearch = (e: FormEvent) => {
         e.preventDefault();
-        navigate(`${routes.productType}${search}`);
+        if (search.trim()) {
+            navigate(`${routes.productType}${search}`);
+        }
     };
 
     return (

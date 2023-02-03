@@ -27,7 +27,7 @@
     max-width: 30rem;
     width: 100%;
     height: calc(100vh - $header-height);
-    padding: 2rem 12rem 2rem 2rem;
+    padding: 2rem 4rem 2rem 2rem;
     align-self: flex-start;
     background-color: $primary-foreground;
     position: sticky;
@@ -39,6 +39,12 @@
             font-weight: 600;
             font-size: 1.8rem;
         }
+        .lighten {
+            color: $tertiary-color;
+        }
+        input {
+            width: 100%;
+        }
     }
     & > .filter_header {
         cursor: pointer;
@@ -47,6 +53,18 @@
         gap: 1rem;
         font-size: 2rem;
         font-weight: 600;
+        & > .filter_icon {
+            display: block;
+            @include breakpoints(toggle-filters) {
+                display: none;
+            }
+        }
+        & > .toggle_icon {
+            display: none;
+            @include breakpoints(toggle-filters) {
+                display: block;
+            }
+        }
         color: $primary-color;
         p {
             margin: 0;

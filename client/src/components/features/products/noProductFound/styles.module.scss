@@ -3,6 +3,7 @@
 
 .not_found {
     padding: 2rem;
+    width: 100%;
     min-height: calc(100vh - (2 * $header-height));
     @include flexBox(center, center, column);
     .image {

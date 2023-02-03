@@ -12,21 +12,24 @@ app.use(express.urlencoded({ extended: true, limit }));
 app.use(express.json({ limit }));
 
 import cors from "cors";
-app.use(cors({ origin: true, credentials: true }));
-// const whiteListedUrls = ["http://localhost:3000"];
-// app.use(
-//     cors({
-//         credentials: true,
-//         origin: function (origin, callBack) {
-//             if (whiteListedUrls.indexOf(origin!) !== -1) {
-//                 callBack(null, true);
-//             } else {
-//                 callBack(new Error("Not a white-listed domain"));
-//             }
-//         },
-//         methods: ["GET", "PUT", "POST", "DELETE"],
-//     })
-// );
+if (process.env.NODE_ENV === "production") {
+    const whiteListedUrls = ["http://localhost:3000"];
+    app.use(
+        cors({
+            credentials: true,
+            origin: function (origin, callBack) {
+                if (whiteListedUrls.indexOf(origin!) !== -1) {
+                    callBack(null, true);
+                } else {
+                    callBack(new Error("Not a white-listed domain"));
+                }
+            },
+            methods: ["GET", "PUT", "POST", "DELETE"],
+        })
+    );
+} else {
+    app.use(cors({ origin: true, credentials: true }));
+}
 
 import cookieParser from "cookie-parser";
 app.use(cookieParser());
@@ -44,13 +47,13 @@ app.use("/api/admin", routes.admin);
 app.use("/api/misc", routes.misc);
 
 // production deployment
-// import { join } from "path";
-// if (process.env.NODE_ENV === "production") {
-//     app.use(express.static(join(__dirname, "../client", "build")));
-//     app.get("*", (req, res) => {
-//         res.sendFile(join(__dirname, "../client", "build", "index.html"));
-//     });
-// }
+import { join } from "path";
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static(join(__dirname, "../client", "build")));
+    app.get("*", (req, res) => {
+        res.sendFile(join(__dirname, "../client", "build", "index.html"));
+    });
+}
 
 import { error } from "./middlewares";
 app.use(error.invalidUrl);

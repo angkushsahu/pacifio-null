@@ -1,9 +1,18 @@
 import styles from "./styles.module.scss";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
+import { Link } from "react-router-dom";
 import { IoMdOptions } from "react-icons/io";
 import { AiOutlineLeft } from "react-icons/ai";
 
-const Filters = () => {
+interface FilterProps {
+    maxPrice: number;
+    ratings: number;
+    priceRange: number;
+    setRatings: Dispatch<SetStateAction<number>>;
+    setPriceRange: Dispatch<SetStateAction<number>>;
+}
+
+const Filters = ({ maxPrice, priceRange, ratings, setPriceRange, setRatings }: FilterProps) => {
     const [toggleFilter, setToggleFilter] = useState(false);
 
     return (
@@ -14,27 +23,54 @@ const Filters = () => {
             </div>
             <aside className={`${styles.filter} ${toggleFilter ? styles.show : ""}`}>
                 <section className={styles.filter_header} onClick={() => setToggleFilter(false)}>
-                    <AiOutlineLeft />
+                    <IoMdOptions className={styles.filter_icon} />
+                    <AiOutlineLeft className={styles.toggle_icon} />
                     <p>Filters</p>
                 </section>
                 <section>
                     <p className={styles.category_title}>Price</p>
-                    <p>0 - 10000</p>
-                    <input type="range" name="" id="" />
+                    <p className={styles.lighten}>0 - {priceRange}</p>
+                    <input
+                        type="range"
+                        name="priceRange"
+                        id="priceRange"
+                        min={0}
+                        max={maxPrice}
+                        onChange={(e) => setPriceRange(Number(e.target.value))}
+                        value={priceRange}
+                    />
                 </section>
                 <section>
                     <p className={styles.category_title}>Categories</p>
                     <ul>
-                        <li>Keyboard</li>
-                        <li>Mouse</li>
-                        <li>Mouse pad</li>
-                        <li>Cooling pad</li>
-                        <li>Headset</li>
+                        <li className={styles.lighten}>
+                            <Link to={"/products?type=keyboard"}>Keyboard</Link>
+                        </li>
+                        <li className={styles.lighten}>
+                            <Link to={"/products?type=mouse"}>Mouse</Link>
+                        </li>
+                        <li className={styles.lighten}>
+                            <Link to={"/products?type=mouse-pad"}>Mouse pad</Link>
+                        </li>
+                        <li className={styles.lighten}>
+                            <Link to={"/products?type=cooling-pad"}>Cooling pad</Link>
+                        </li>
+                        <li className={styles.lighten}>
+                            <Link to={"/products?type=headset"}>Headset</Link>
+                        </li>
                     </ul>
                 </section>
                 <section>
-                    <p className={styles.category_title}>Ratings above 5</p>
-                    <input type="range" name="" id="" min={0} max={5} />
+                    <p className={styles.category_title}>Ratings above {ratings}</p>
+                    <input
+                        type="range"
+                        name="ratings"
+                        id="ratings"
+                        min={0}
+                        max={5}
+                        onChange={(e) => setRatings(Number(e.target.value))}
+                        value={ratings}
+                    />
                 </section>
             </aside>
         </>
