@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { catchAsyncErrors } from "../../middlewares";
 import { Product } from "../../models";
 import { ICreateProduct } from "../../types";
-import { ApiFeatures, cloudinaryConfig, ErrorHandler } from "../../utils";
+import { ApiFeatures, cloudinaryConfig, ErrorHandler, getProductImageFolderName } from "../../utils";
 
 export const getAllProducts = catchAsyncErrors(async (req: Request, res: Response, next: NextFunction) => {
     const resultPerPage = 10; // original value --> 10
@@ -50,8 +50,9 @@ export const createProduct = catchAsyncErrors(async (req: Request, res: Response
         let pic: string = "";
         let publicUrl: string = "";
         if (image) {
+            const productImageFolderName = getProductImageFolderName(name);
             const uploadImage = await cloudinaryConfig.uploader.upload(image, {
-                folder: `pacifio/products/${name}`,
+                folder: `pacifio/products/${productImageFolderName}`,
                 use_filename: true,
             });
             pic = uploadImage.secure_url;
@@ -92,7 +93,9 @@ export const deleteProduct = catchAsyncErrors(async (req: Request, res: Response
             await cloudinaryConfig.uploader.destroy(product.images[i].publicUrl);
         }
     }
-    await cloudinaryConfig.api.delete_folder(`pacifio/products/${product.name}`);
+
+    const productImageFolderName = getProductImageFolderName(product.name);
+    await cloudinaryConfig.api.delete_folder(`pacifio/products/${productImageFolderName}`);
 
     await product.remove();
     res.status(200).json({ success: true, message: "Product deleted successfully" });

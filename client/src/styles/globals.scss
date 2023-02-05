@@ -291,6 +291,7 @@ button {
 .admin-pages {
     @include flexBox(flex-start, flex-start);
     & > .admin-loading--section {
+        width: 100%;
         flex: 1;
         min-height: calc(100vh - $header-height);
         @include flexBox;
