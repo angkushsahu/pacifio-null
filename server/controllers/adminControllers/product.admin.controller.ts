@@ -94,8 +94,10 @@ export const deleteProduct = catchAsyncErrors(async (req: Request, res: Response
         }
     }
 
-    const productImageFolderName = getProductImageFolderName(product.name);
-    await cloudinaryConfig.api.delete_folder(`pacifio/products/${productImageFolderName}`);
+    if (imagesLength) {
+        const productImageFolderName = getProductImageFolderName(product.name);
+        await cloudinaryConfig.api.delete_folder(`pacifio/products/${productImageFolderName}`);
+    }
 
     await product.remove();
     res.status(200).json({ success: true, message: "Product deleted successfully" });

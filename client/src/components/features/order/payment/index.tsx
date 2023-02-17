@@ -1,15 +1,19 @@
 import styles from "./styles.module.scss";
 import { useEffect } from "react";
-import OrderStatus from "components/common/orderStatus";
 import { Navigate, useNavigate } from "react-router-dom";
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+import { useGetKeyQuery, useProcessPaymentQuery } from "store/queries";
+import OrderStatus from "components/common/orderStatus";
 import routes from "components/app/routes";
 import { useAppSelector } from "store";
 import PaymentForm from "./paymentForm";
 
 const Payment = () => {
     const navigate = useNavigate();
-    const { stripeKey } = useAppSelector((state) => state.stripeKeySlice);
+    const { data: getKeyData } = useGetKeyQuery();
     const { order } = useAppSelector((state) => state.processOrderSlice);
+    const { data: paymentData } = useProcessPaymentQuery({ amount: order.amount * 100 });
 
     useEffect(() => {
         const { amount, shippingInfo } = order;
@@ -21,12 +25,15 @@ const Payment = () => {
         }
     }, [order, navigate]);
 
-    if (stripeKey) {
+    if (getKeyData?.success && getKeyData.stripeApiKey && paymentData?.success && paymentData.clientSecret) {
+        const { clientSecret } = paymentData;
         return (
             <section className={styles.payment}>
                 <OrderStatus />
                 <h1 className="text-center">Payment</h1>
-                <PaymentForm />
+                <Elements stripe={loadStripe(getKeyData.stripeApiKey)} options={{ clientSecret }}>
+                    <PaymentForm newOrder={order} />
+                </Elements>
             </section>
         );
     } else {

@@ -3,7 +3,7 @@ import { IRequest } from "types";
 
 export const paymentApi = apiQueries.injectEndpoints({
     endpoints: (builder) => ({
-        processPayment: builder.mutation<IRequest & { clientSecret: string }, { amount: number }>({
+        processPayment: builder.query<IRequest & { clientSecret: string }, { amount: number }>({
             query: (body) => {
                 return {
                     url: "/payment/process",
@@ -28,4 +28,4 @@ export const paymentApi = apiQueries.injectEndpoints({
     overrideExisting: false,
 });
 
-export const { useGetKeyQuery, useProcessPaymentMutation } = paymentApi;
+export const { useGetKeyQuery, useProcessPaymentQuery } = paymentApi;

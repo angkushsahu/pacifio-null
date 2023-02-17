@@ -2,7 +2,7 @@ import styles from "./styles.module.scss";
 import OrderStatus from "components/common/orderStatus";
 import { useEffect } from "react";
 import routes from "components/app/routes";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "store";
 import { useGetCartQuery } from "store/queries";
 import LoadingPage from "components/common/loading";
@@ -34,7 +34,7 @@ const ConfirmOrder = () => {
 
     if (isLoading) {
         return <LoadingPage />;
-    } else {
+    } else if (data?.cart?.products) {
         return (
             <section className={styles.confirm_order}>
                 <OrderStatus />
@@ -67,6 +67,8 @@ const ConfirmOrder = () => {
                 </div>
             </section>
         );
+    } else {
+        return <Navigate to={routes.cart} replace={true} />;
     }
 };
 

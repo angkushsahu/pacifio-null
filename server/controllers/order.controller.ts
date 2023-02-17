@@ -58,8 +58,6 @@ export const createOrder = catchAsyncErrors(async (req: Request, res: Response, 
         await order.populate("user", "name email")
     ).populate({ path: "shippingInfo", select: "location city state country pincode phoneNumber" });
 
-    await cart.remove();
-
     res.status(201).json({ success: true, message: "Order placed successfully", order: populatedOrder });
 });
 
