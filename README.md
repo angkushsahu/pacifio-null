@@ -5,7 +5,7 @@ An online store for programmers and gamers where you can buy any hardware requir
 The payment methods is integrated using Stripe.
 Feel free to explore the website from the link provided below.
 
-### Visit :- [Pacifio](https://pacifio.herokuapp.com/)
+### Visit :- [Pacifio](https://pacifio.onrender.com/)
 
 ## Tech Stack
 

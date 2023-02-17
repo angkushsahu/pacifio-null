@@ -4,6 +4,7 @@
 
 # build
 /build
+/client/build
 
 # env
 /config.env
