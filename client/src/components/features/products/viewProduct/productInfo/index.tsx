@@ -109,7 +109,11 @@ const ProductInfo = (props: ProductInfoProps) => {
                     Add To Cart
                 </button>
             </div>
-            <p className={styles.description}>{description}</p>
+            {description.split("\n").map((desc, idx) => (
+                <p key={idx} className={styles.description}>
+                    {desc}
+                </p>
+            ))}
             <form onSubmit={onReviewSubmit} className={styles.review_container}>
                 <h3>Write a Review</h3>
                 <label htmlFor="review"></label>
